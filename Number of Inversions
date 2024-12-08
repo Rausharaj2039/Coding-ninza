@@ -1,0 +1,45 @@
+public class Solution {
+ public static int numberOfInversions(int []a, int n) {
+     if (a == null || n <= 1) {
+            return 0;
+        }
+        return mergeSortAndCount(a, 0, n - 1);
+    }
+
+    private static int mergeSortAndCount(int[] a, int left, int right) {
+        int count = 0;
+
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+            count += mergeSortAndCount(a, left, mid);
+            count += mergeSortAndCount(a, mid + 1, right);
+            count += mergeAndCount(a, left, mid, right);
+        }
+
+        return count;
+    }
+
+    private static int mergeAndCount(int[] a, int left, int mid, int right) {
+        int[] leftArray = java.util.Arrays.copyOfRange(a, left, mid + 1);
+        int[] rightArray = java.util.Arrays.copyOfRange(a, mid + 1, right + 1);
+
+        int i = 0, j = 0, k = left, swaps = 0;
+
+        while (i < leftArray.length && j < rightArray.length) {
+            if (leftArray[i] <= rightArray[j]) {
+                a[k++] = leftArray[i++];
+            } else {
+                a[k++] = rightArray[j++];
+                swaps += (mid + 1) - (left + i); // Count inversions
+            }
+        }
+        while (i < leftArray.length) {
+            a[k++] = leftArray[i++];
+        }
+        while (j < rightArray.length) {
+            a[k++] = rightArray[j++];
+        }
+
+        return swaps;
+}
+}
