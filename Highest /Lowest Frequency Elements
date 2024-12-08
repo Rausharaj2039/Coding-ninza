@@ -1,0 +1,35 @@
+import java.util.HashMap;
+
+public class Solution {
+    public static int[] getFrequencies(int []v) {
+      HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : v) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        
+        int maxFrequency = 0;
+        int minFrequency = Integer.MAX_VALUE;
+        int highestFreqElement = Integer.MAX_VALUE;
+        int lowestFreqElement = Integer.MAX_VALUE;
+
+       
+        for (HashMap.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            int element = entry.getKey();
+            int frequency = entry.getValue();
+
+            
+            if (frequency > maxFrequency || (frequency == maxFrequency && element < highestFreqElement)) {
+                maxFrequency = frequency;
+                highestFreqElement = element;
+            }
+
+          
+            if (frequency < minFrequency || (frequency == minFrequency && element < lowestFreqElement)) {
+                minFrequency = frequency;
+                lowestFreqElement = element;
+            }
+        }
+
+        return new int[]{highestFreqElement, lowestFreqElement};
+
