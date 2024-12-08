@@ -1,0 +1,26 @@
+public class Solution {
+    public static ArrayList<ArrayList<Integer>> zeroMatrix(ArrayList<ArrayList<Integer>> mat, Integer n, Integer m) {
+    	// Write your code here.
+        Set<Integer> row= new HashSet<>();
+        Set<Integer> col= new HashSet<>();
+        for(int i=0;i<mat.size();i++){
+            for(int j=0;j<mat.get(0).size();j++){
+                if(mat.get(i).get(j)==0){
+                    row.add(i);
+                    col.add(j);
+                }
+            }
+        }
+        for(int r:row){
+            for(int i=0;i<mat.get(0).size();i++){
+                mat.get(r).set(i,0);
+            }
+           
+        }
+        for(int c:col){
+             for(int j=0;j<mat.size();j++){
+                mat.get(j).set(c,0);
+            }
+        }
+        return mat;
+    }
