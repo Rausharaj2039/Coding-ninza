@@ -1,0 +1,16 @@
+public class Solution {
+    public static String read(int n, int []book, int target){
+        // Write your code here.
+        for(int i=0;i<book.length-1;i++){
+            int tar=target-book[i];
+            for(int j=i+1;j<book.length;j++){
+                if(book[j]==tar){
+                    return "YES";
+                }
+
+            }
+
+        }
+        return "NO";
+    }
+}
