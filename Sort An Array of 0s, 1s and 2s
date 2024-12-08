@@ -1,0 +1,31 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void sortArray(ArrayList<Integer> arr, int n) {
+        // Write your code here.
+        
+        int i=0;
+        int j=0;
+        int k=arr.size()-1;
+        while(j<=k){if(arr.get(j)==0){
+            int temp=arr.get(i);
+            arr.set(i,arr.get(j));
+            arr.set(j,temp);
+            i++;
+            j++;
+        }
+        else if(arr.get(j)==1)
+        j++;
+        else{
+            int temp=arr.get(j);
+            arr.set(j,arr.get(k));
+            arr.set(k,temp);
+            k--;
+
+
+        }
+
+        }
+
+    }
+}
